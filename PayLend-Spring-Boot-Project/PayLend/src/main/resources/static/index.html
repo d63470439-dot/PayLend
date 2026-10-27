@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2e">
+  <title>PayLend — Wallet & Micro-loans</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">P</span><span>PayLend<small>WALLET & MICRO-LOANS</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-link active" data-view="overview"><span>▦</span> Overview</button>
+      <button class="nav-link" data-view="wallet"><span>◈</span> Wallet actions</button>
+      <button class="nav-link" data-view="loans"><span>↗</span> Micro-loans</button>
+      <button class="nav-link" data-view="transactions"><span>≡</span> Transactions</button>
+      <div class="sidebar-bottom">
+        <div class="secure-dot"></div>
+        <div><strong>Demo environment</strong><small>No real money moves</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">YOUR MONEY, MADE SIMPLE</p><h1 id="page-title">Overview</h1></div>
+        <div class="user-switch"><label for="current-user">ACTIVE WALLET</label><select id="current-user"><option value="">Register a user first</option></select></div>
+      </header>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="view" id="view-overview">
+        <div class="welcome-row">
+          <div><span class="pill">PAYLEND DASHBOARD</span><h2>Good to see you<span class="accent">.</span></h2><p>Keep your wallet moving and your repayments in control.</p></div>
+          <div class="date-chip" id="today-label">PERSONAL WALLET</div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card balance-card"><div class="stat-top"><span>Available balance</span><span class="stat-icon">₹</span></div><div class="stat-value" id="stat-balance">₹0.00</div><div class="stat-foot">Ready for your next transaction</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Active loan balance</span><span class="stat-icon purple">↗</span></div><div class="stat-value" id="stat-loan">₹0.00</div><div class="stat-foot">Outstanding amount to repay</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Total transactions</span><span class="stat-icon green">≋</span></div><div class="stat-value" id="stat-transactions">0</div><div class="stat-foot">Recorded activity for this wallet</div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel quick-panel"><div class="panel-heading"><div><h3>Quick actions</h3><p>What would you like to do today?</p></div><span class="heading-mark">✦</span></div>
+            <div class="quick-grid">
+              <button class="quick-action" data-go="wallet" data-action="add"><span class="quick-icon blue">＋</span><strong>Add money</strong><small>Top up your wallet</small></button>
+              <button class="quick-action" data-go="wallet" data-action="transfer"><span class="quick-icon violet">⇄</span><strong>Transfer</strong><small>Send to a user</small></button>
+              <button class="quick-action" data-go="wallet" data-action="recharge"><span class="quick-icon orange">▣</span><strong>Mobile recharge</strong><small>Simulated top-up</small></button>
+              <button class="quick-action" data-go="loans"><span class="quick-icon green">↗</span><strong>Get a micro-loan</strong><small>Small loan, clear terms</small></button>
+            </div>
+          </article>
+          <article class="panel recent-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Your latest wallet movements</p></div><button class="text-button" data-go="transactions">View all ↗</button></div><div id="recent-list" class="activity-list"><div class="empty-state">Register a user to get started.</div></div></article>
+        </div>
+        <article class="panel user-panel"><div class="panel-heading"><div><h3>New to PayLend?</h3><p>Create a wallet in a few seconds.</p></div></div>
+          <form id="register-form" class="inline-form"><div class="field"><label for="reg-name">FULL NAME</label><input id="reg-name" name="name" placeholder="e.g. Aanya Shah" maxlength="60" required></div><div class="field"><label for="reg-mobile">MOBILE NUMBER</label><input id="reg-mobile" name="mobileNumber" placeholder="e.g. 9876543210" minlength="7" maxlength="20" required></div><button class="btn btn-primary" type="submit">Create wallet <span>↗</span></button></form>
+        </article>
+      </section>
+
+      <section class="view" id="view-wallet" hidden>
+        <div class="section-intro"><span class="pill">WALLET SERVICES</span><h2>Move money with ease<span class="accent">.</span></h2><p>All actions are simulated for this educational project.</p></div>
+        <div class="action-cards">
+          <article class="panel form-panel" id="add-card"><div class="form-title"><span class="quick-icon blue">＋</span><div><h3>Add money</h3><p>Add demo funds to your wallet.</p></div></div><form id="add-form"><div class="field"><label for="add-amount">AMOUNT (₹)</label><input id="add-amount" type="number" min="1" step="0.01" placeholder="1000.00" required></div><button class="btn btn-primary full" type="submit">Add money <span>↗</span></button></form></article>
+          <article class="panel form-panel" id="transfer-card"><div class="form-title"><span class="quick-icon violet">⇄</span><div><h3>Transfer funds</h3><p>Send money to another registered user.</p></div></div><form id="transfer-form"><div class="field"><label for="receiver">SEND TO</label><select id="receiver" required><option value="">Register another user first</option></select></div><div class="field"><label for="transfer-amount">AMOUNT (₹)</label><input id="transfer-amount" type="number" min="1" step="0.01" placeholder="250.00" required></div><button class="btn btn-primary full" type="submit">Transfer money <span>↗</span></button></form></article>
+          <article class="panel form-panel" id="recharge-card"><div class="form-title"><span class="quick-icon orange">▣</span><div><h3>Mobile recharge</h3><p>Record a simulated mobile recharge.</p></div></div><form id="recharge-form"><div class="field"><label for="recharge-mobile">MOBILE NUMBER</label><input id="recharge-mobile" placeholder="10-digit mobile number" minlength="7" maxlength="20" required></div><div class="field"><label for="operator">OPERATOR</label><select id="operator" required><option value="">Choose operator</option><option>Jio</option><option>Airtel</option><option>Vi</option><option>BSNL</option></select></div><div class="field"><label for="recharge-amount">AMOUNT (₹)</label><input id="recharge-amount" type="number" min="1" step="0.01" placeholder="199.00" required></div><button class="btn btn-primary full" type="submit">Recharge <span>↗</span></button></form></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-loans" hidden>
+        <div class="section-intro"><span class="pill">BORROW RESPONSIBLY</span><h2>A little help, clearly tracked<span class="accent">.</span></h2><p>Request a demo micro-loan and repay it from your wallet in instalments.</p></div>
+        <div class="loan-layout">
+          <article class="panel loan-hero"><div class="loan-orb">₹</div><span class="pill light-pill">PAYLEND MICRO-LOAN</span><h3>Small steps.<br>Clear repayments.</h3><p>Interest is calculated as a flat percentage of the principal in this demo.</p><div class="loan-terms"><div><small>MAXIMUM LOAN</small><strong id="loan-limit">₹10,000</strong></div><div><small>FLAT INTEREST</small><strong id="loan-rate">10%</strong></div></div></article>
+          <article class="panel form-panel"><div class="form-title"><span class="quick-icon green">↗</span><div><h3>Request a loan</h3><p>Loan funds will be added to the selected wallet.</p></div></div><form id="loan-form"><div class="field"><label for="loan-amount">LOAN AMOUNT (₹)</label><input id="loan-amount" type="number" min="1" step="0.01" placeholder="5000.00" required></div><div class="loan-estimate"><div><span>Estimated interest</span><strong id="estimated-interest">₹0.00</strong></div><div><span>Total payable</span><strong id="estimated-total">₹0.00</strong></div></div><button class="btn btn-primary full" type="submit">Request micro-loan <span>↗</span></button></form></article>
+        </div>
+        <article class="panel loans-panel"><div class="panel-heading"><div><h3>Your loans</h3><p>Track remaining balance and repayment status.</p></div></div><div id="loans-list" class="loan-list"><div class="empty-state">No loans yet.</div></div></article>
+        <article class="panel form-panel repay-panel"><div class="form-title"><span class="quick-icon violet">↘</span><div><h3>Repay an instalment</h3><p>Payment is deducted from your wallet balance.</p></div></div><form id="repay-form" class="repay-form"><div class="field"><label for="repay-amount">REPAYMENT AMOUNT (₹)</label><input id="repay-amount" type="number" min="1" step="0.01" placeholder="500.00" required></div><button class="btn btn-primary" type="submit">Repay loan <span>↗</span></button></form></article>
+      </section>
+
+      <section class="view" id="view-transactions" hidden>
+        <div class="section-intro"><span class="pill">ACCOUNT ACTIVITY</span><h2>Every movement, recorded<span class="accent">.</span></h2><p>Review the transaction records for your selected wallet.</p></div>
+        <article class="panel"><div class="panel-heading"><div><h3>Transaction history</h3><p id="history-caption">Most recent first</p></div><span class="history-count" id="history-count">0 records</span></div><div class="table-wrap"><table><thead><tr><th>TRANSACTION</th><th>DETAILS</th><th>DATE & TIME</th><th>STATUS</th><th class="align-right">AMOUNT</th></tr></thead><tbody id="transaction-rows"><tr><td colspan="5" class="empty-state">No transactions yet.</td></tr></tbody></table></div></article>
+      </section>
+
+      <footer><span>© 2026 PayLend · Educational project</span><span>Secure design · Demo data only</span></footer>
+    </main>
+  </div>
+</body>
+</html>
